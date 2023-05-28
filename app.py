@@ -64,7 +64,7 @@ def get_answer(docs, query):
 
     chain = load_qa_with_sources_chain(
         OpenAI(
-            temperature=0, openai_api_key="OPENAI_KEY",
+            temperature=0, openai_api_key=OPENAI_KEY,
         ),  # type: ignore
         chain_type="stuff",
         prompt=STUFF_PROMPT,
@@ -81,7 +81,7 @@ def get_answer(docs, query):
 
 index_file = "faiss-file"
 embeddings = OpenAIEmbeddings(
-    openai_api_key="OPENAI_KEY",
+    openai_api_key=OPENAI_KEY,
 )  # type: ignore
 
 index = FAISS.load_local(index_file, embeddings = embeddings)

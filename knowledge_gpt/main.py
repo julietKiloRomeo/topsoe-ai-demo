@@ -22,7 +22,7 @@ def clear_submit():
 st.set_page_config(page_title="KnowledgeGPT", page_icon="📖", layout="wide")
 st.header("📖KnowledgeGPT")
 
-st.session_state["OPENAI_API_KEY"] = "OPENAI_KEY"
+st.session_state["OPENAI_API_KEY"] = OPENAI_KEY
 
 sidebar()
 
