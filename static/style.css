@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+}
+
+@keyframes flash {
+    0% {opacity: 1;}
+    50% {opacity: 0.1;}
+    100% {opacity: 1;}
+}
+
+.dot {
+    animation-name: flash;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+    font-size: 3em; /* Change this value to increase or decrease the size of the dots */
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+#logo {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 190px;
+    height: 35px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.input-query {
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    color: #333;
+    font-size: 1em;
+    resize: none;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.input-query:focus {
+    caret-color: #333; /* change this to suit your design */
+}
+
+.card a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 70vh; /* Takes up the full viewport height */
+    justify-content: flex-start; /* Start items at the top */
+}
+
+
+#output {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    padding: 10px;
+}
+
+#output::after {
+    content: '';
+    flex: 1;
+}
+
+.message {
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    width: fit-content;
+    transition: all 0.3s ease-in-out;
+    margin: 1em 0;
+    font-size: 1.2em;
+    line-height: 1.4;
+}
+
+.user-message {
+    background: #e8f5e9;
+    color: #333;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+}
+
+.bot-message {
+    background: #bbdefb;
+    color: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+}
+
+
+/* Style the input box */
+#text-form {
+    background-color: #f8f8f8;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
+
+
+/* Update the input box */
+.input-query {
+    border: none;  /* Remove the border */
+    background-color: #f8f8f8;
+    color: #333;
+    font-size: 1em;
+    resize: none;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px; /* Add some padding to give the text some space */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+/* Remove the default focus outline */
+.input-query:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Optional: Add a custom focus style */
+}
+
+
+/* Update the header */
+h1 {
+    font-size: 2.5em; /* Adjust the size as needed */
+    text-align: right; /* Align the text to the right */
+    color: #ff6347; /* Set the color to Tomato */
+    font-weight: 700; /* Make it bold */
+    letter-spacing: -1px; /* Add some negative letter spacing for a modern look */
+    text-transform: uppercase; /* Optional: Make it uppercase */
+    margin-bottom: 20px; /* Add some space below the header */
+}
+
+#articles-container {
+    margin-top: calc(2.5em + 20px); /* Adjust this value as needed */
+}
+
+
+.icon {
+    height: 20px; /* Adjust this as needed */
+    width: 20px; /* Adjust this as needed */
+    cursor: pointer;
+}
+
+.icon:hover {
+    opacity: 0.7;
+}

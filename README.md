@@ -2,6 +2,8 @@
 📖KnowledgeGPT
 </h1>
 
+curl -X POST -H "Content-Type: application/json" -d '{"text":"what are zeolites?"}' http://localhost:5000/process
+
 Accurate answers and instant citations for your documents.
 
 ## 🔧 Features
