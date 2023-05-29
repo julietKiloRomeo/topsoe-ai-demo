@@ -11,6 +11,12 @@ from knowledge_gpt.prompts import STUFF_PROMPT
 from langchain.vectorstores.faiss import FAISS
 from knowledge_gpt.embeddings import OpenAIEmbeddings
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # take environment variables from .env.
+
+
 
 app = Flask(__name__, template_folder='.')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -53,7 +59,7 @@ class Article(db.Model):
 
 # db.drop_all()
 
-OPENAI_KEY = ""
+
 
 #@cache.cached(timeout=3600) # cache for 50 seconds
 def get_answer(docs, query):
@@ -64,7 +70,7 @@ def get_answer(docs, query):
 
     chain = load_qa_with_sources_chain(
         OpenAI(
-            temperature=0, openai_api_key=OPENAI_KEY,
+            temperature=0, openai_api_key=os.getenv("OPENAI_API_KEY"),
         ),  # type: ignore
         chain_type="stuff",
         prompt=STUFF_PROMPT,
@@ -81,7 +87,7 @@ def get_answer(docs, query):
 
 index_file = "faiss-file"
 embeddings = OpenAIEmbeddings(
-    openai_api_key=OPENAI_KEY,
+    openai_api_key=os.getenv("OPENAI_API_KEY"),
 )  # type: ignore
 
 index = FAISS.load_local(index_file, embeddings = embeddings)
