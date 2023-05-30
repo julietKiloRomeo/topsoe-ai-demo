@@ -16,9 +16,11 @@ import os
 
 load_dotenv()  # take environment variables from .env.
 
+from flask_cors import CORS
 
 
 app = Flask(__name__, template_folder='.')
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 cache = Cache(app,config={'CACHE_TYPE': 'simple'})
 db = SQLAlchemy(app)
