@@ -40,6 +40,7 @@ class Article(db.Model):
         return {
             'id': self.id,
             'path': self.path,
+            'author': self.author,
             'summary': self.summary,
             'title': self.title,
         }
@@ -53,7 +54,7 @@ class Article(db.Model):
 
 # db.drop_all()
 
-OPENAI_KEY = ""
+OPENAI_KEY = "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"
 
 #@cache.cached(timeout=3600) # cache for 50 seconds
 def get_answer(docs, query):
@@ -98,15 +99,17 @@ def process_text():
     query = data.get('text', '')
 
 
-    #query = "what are oxxyvamps?"
+    print(f"""###################\n{query}\n----------------""")
     docs = index.similarity_search_with_relevance_scores(query, k=8)
 
     LOWER_RELEVANCE_BOUND = 0.72
     docs = [doc for doc, relevance in docs if relevance > LOWER_RELEVANCE_BOUND]
+    print(f"""docs..""")
 
     answer = get_answer(docs, query)
+    print(f"""answer..""")
     answer_txt, sources_txt = answer.split("SOURCES")
-
+    print(f"""{answer_txt}\n###################""")
     if len(docs) == 0:
         # Return a JSON response
         return jsonify(result=answer_txt, articles=[])
@@ -117,6 +120,21 @@ def process_text():
     # Convert the articles into dictionaries...
     article_dicts = [article.to_dict() for article in matching_articles]
 
+    print(f"""{article_dicts}""")
+    
 
     # Return a JSON response
     return jsonify(result=answer_txt, articles=article_dicts)
+
+
+
+@app.route('/api/articles')
+def api_articles():
+    # Query the database for all articles
+    articles = Article.query.all()
+
+    # Convert each article to a dict
+    articles = [article.to_dict() for article in articles]
+
+    # Return the articles as JSON
+    return jsonify(articles)
