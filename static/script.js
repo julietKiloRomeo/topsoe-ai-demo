@@ -137,12 +137,19 @@ document.getElementById('text-form').addEventListener('submit', function(event) 
         },
         body: JSON.stringify({ text: query_to_send })  // Send all messages
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
         displayLoading(false);
         displayOutput(data.result);
         displayArticles(data.articles);
-    });
+    })
+    .catch(e => console.log('There was an error: ' + e));
+    
 });
 
 
